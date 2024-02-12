@@ -2,25 +2,25 @@ version: "3.8"
 services:
   frontend:
     build:
-      context: ../Sylvy-Game-web-app
+      context: ./path/to/Sylvy-Game-web-app
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3001:80" # Nginx는 기본적으로 80 포트에서 실행됨
     depends_on:
       - backend
     environment:
-      - REACT_APP_BACKEND_URL=http://backend:5000
+      - REACT_APP_BACKEND_URL=http://localhost:3000 # 백엔드 URL 변경
 
   backend:
     build:
       context: ../Sylvy-Game-server
       dockerfile: Dockerfile
     ports:
-      - "5000:5000"
+      - "3000:3000" # 백엔드는 3000 포트 유지
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgresql://user:password@db:5432/dbname
+      - DATABASE_URL=postgresql://postgres:admin1234@db:5432/sylvy_game_db
 
   db:
     image: postgres:13
