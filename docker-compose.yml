@@ -2,7 +2,7 @@ version: "3.8"
 services:
   frontend:
     build:
-      context: ./path/to/Sylvy-Game-web-app
+      context: ../Sylvy-Game-web-app
       dockerfile: Dockerfile
     ports:
       - "3001:80" # Nginx는 기본적으로 80 포트에서 실행됨
